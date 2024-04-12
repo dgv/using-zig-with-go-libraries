@@ -1,15 +1,8 @@
 lib:
-	go tool cgo -exportheader lib/lib.h lib/main.go &&\
-	go build lib/main.go -o lib/lib.a &&\
-	go build -buildmode=c-shared -o lib/lib.so
+	go tool cgo -exportheader lib/lib.h lib/lib.go &&\
+	go build lib/lib.go -o lib/lib.a
 
-dynamic:
-	clang main.c -LD lib/lib.so -o main_dynamic
-
-static:
-	clang main.c -I lib/ -L lib/lib.a -o main_static
+clear:
+	rm lib/lib.a lib/lib.h
 
 all:
-	lib
-	dynamic
-	static
