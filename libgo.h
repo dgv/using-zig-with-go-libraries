@@ -74,10 +74,8 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-extern void Stderr();
-extern int Sum(int a, int b);
-extern char* String(char* msg);
-extern void* Buffer(char* str);
+extern void PrintConsole(GoString msg);
+extern GoInt Sum(GoInt a, GoInt b);
 
 #ifdef __cplusplus
 }

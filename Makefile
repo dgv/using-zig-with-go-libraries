@@ -1,8 +1,7 @@
-lib:
-	go tool cgo -exportheader lib/lib.h lib/lib.go &&\
-	go build lib/lib.go -o lib/lib.a
+all:
+	go tool cgo -exportheader libgo.h libgo.go &&\
+	go build -buildmode=c-shared -o libgo.so
+	zig build-exe main.zig -I./ ./libgo.so
 
 clear:
-	rm lib/lib.a lib/lib.h
-
-all:
+	rm -rf _obj main main.o libgo.so libgo.h
